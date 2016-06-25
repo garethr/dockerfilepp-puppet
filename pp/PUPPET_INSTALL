@@ -1,0 +1,5 @@
+RUN apt-get update && \
+    /opt/puppetlabs/puppet/bin/r10k puppetfile install --moduledir /etc/puppetlabs/code/modules && \
+    /opt/puppetlabs/bin/puppet apply manifests/init.pp --verbose --show_diff  --summarize && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
