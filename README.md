@@ -53,10 +53,14 @@ So lets run that through `dockerfilepp`.
 First, build a binary. For this you'll need a Go environment setup but
 everything in use here is in the standard library.
 
-Running go build should be enough to generate a `dockerfilepp` binary.
+The project uses [go-bindata](https://github.com/jteeuwen/go-bindata) to
+make management of processors easier so first install that. This is only
+required for building your own binaries, not using the resulting tool.
+
+Running `make build` should then be enough to generate a `dockerfilepp` binary.
 
 ```
-go build
+make build
 ```
 
 Once you have the binary you can use it like so:
