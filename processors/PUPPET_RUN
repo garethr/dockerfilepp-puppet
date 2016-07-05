@@ -1,11 +1,11 @@
 RUN apt-get update && \
     apt-get install -y wget=1.17.1-1ubuntu1 && \
-    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
-    dpkg -i puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
-    rm puppetlabs-release-pc1-"$UBUNTU_CODENAME".deb && \
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$$UBUNTU_CODENAME".deb && \
+    dpkg -i puppetlabs-release-pc1-"$$UBUNTU_CODENAME".deb && \
+    rm puppetlabs-release-pc1-"$$UBUNTU_CODENAME".deb && \
     apt-get update && \
-    apt-get install --no-install-recommends -y puppet-agent="$PUPPET_AGENT_VERSION"-1"$UBUNTU_CODENAME" && \
+    apt-get install --no-install-recommends -y puppet-agent="$$PUPPET_AGENT_VERSION"-1"$UBUNTU_CODENAME" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN /opt/puppetlabs/puppet/bin/gem install r10k:"$R10K_VERSION" --no-ri --no-rdoc
+RUN /opt/puppetlabs/puppet/bin/gem install r10k:"$$R10K_VERSION" --no-ri --no-rdoc
