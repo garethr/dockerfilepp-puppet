@@ -55,8 +55,8 @@ func main() {
 
 Usage:
 
-    dockerfilepp < Dockerfile
-    Dockerfile | dockerfilepp
+    dockerfilepp-puppet < Dockerfile
+    Dockerfile | dockerfilepp-puppet
 
 dockerfilepp takes a Dockerfile on stdin and outputs to stdout a modified version
 of the same Dockerfile which has been through the registered pre-processors.`)

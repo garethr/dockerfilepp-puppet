@@ -57,7 +57,8 @@ The project uses [go-bindata](https://github.com/jteeuwen/go-bindata) to
 make management of processors easier so first install that. This is only
 required for building your own binaries, not using the resulting tool.
 
-Running `make build` should then be enough to generate a `dockerfilepp` binary.
+Running `make build` should then be enough to generate a `dockerfilepp-puppet`
+binary.
 
 ```
 make build
@@ -66,7 +67,7 @@ make build
 Once you have the binary you can use it like so:
 
 ```
-cat Dockerfile | ./dockerfilepp
+cat Dockerfile | ./dockerfilepp-puppet
 ```
 
 This should output to stdout with a new Dockerfile which is:
