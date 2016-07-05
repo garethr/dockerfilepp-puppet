@@ -16,9 +16,21 @@ type Args struct {
 
 func replace(args string, temp string) string {
 	argument := Args{args}
-	tmpl, _ := template.New("replacer").Parse(temp)
+	tmpl, err := template.New("replacer").Parse(temp)
+	if err != nil {
+		fmt.Println("A problem occured parsing one of the processors:")
+		fmt.Println(err)
+		fmt.Print(temp)
+		os.Exit(2)
+	}
 	buff := bytes.NewBufferString("")
-	_ = tmpl.Execute(buff, argument)
+	err = tmpl.Execute(buff, argument)
+	if err != nil {
+		fmt.Println("A problem occured executing one of the processors:")
+		fmt.Println(err)
+		fmt.Print(temp)
+		os.Exit(2)
+	}
 	return buff.String()
 }
 
