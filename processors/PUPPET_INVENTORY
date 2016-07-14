@@ -1,0 +1,4 @@
+LABEL com.puppet.inventory="/inventory.json"
+
+RUN /opt/puppetlabs/bin/puppet module install puppetlabs-inventory && \
+    /opt/puppetlabs/bin/puppet inventory all > /inventory.json

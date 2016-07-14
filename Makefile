@@ -9,9 +9,9 @@ build: bindata
 	go build -o ${OUTPUT}
 
 test: build
-	cat Dockerfile | ./${OUTPUT}
+	cat example/Dockerfile | ./${OUTPUT}
 
 diff: build
-	cat Dockerfile | ./${OUTPUT} > Dockerfile.result
-	-colordiff -y Dockerfile Dockerfile.result
+	cat example/Dockerfile | ./${OUTPUT} > Dockerfile.result
+	-colordiff -y example/Dockerfile Dockerfile.result
 	rm Dockerfile.result
