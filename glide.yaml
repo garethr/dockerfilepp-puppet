@@ -3,3 +3,6 @@ import:
 - package: github.com/jteeuwen/go-bindata
   subpackages:
   - '...'
+- package: github.com/garethr/dockerfilepp
+  subpackages:
+  - '...'

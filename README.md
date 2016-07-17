@@ -1,7 +1,7 @@
 A _very much_ proof-of-concept showing how simple it is to build
 Dockerfile pre-processors.
 
-In this case `dockerfilepp` is a trivial go application which takes a
+In this case `dockerfilepp-puppet` is a trivial go application which takes a
 Dockerfile on stdin and simply replaces some pre-defined values. The
 idea would be to make Dockerfile declarative again, making multiple
 Dockerfiles doing the same thing easier to maintain.
@@ -9,6 +9,9 @@ Dockerfiles doing the same thing easier to maintain.
 The examples centre around Puppet, but this is for demonstration
 purposes only. You could imagine building your own library of DSL
 extensions in a similar way, or extending into a general purpose tool.
+For this purpose most of the work has been split out into a sepatate
+library at
+[github.com/garethr/dockerfile](https://github.com/garethr/dockerfilepp).
 
 ## Problem
 
@@ -48,14 +51,17 @@ EXPOSE 80
 CMD ["nginx"]
 ```
 
-So lets run that through `dockerfilepp`.
+So lets run that through `dockerfilepp-puppet`.
 
-First, build a binary. For this you'll need a Go environment setup but
-everything in use here is in the standard library.
+First, build a binary. For this you'll need a Go environment, along with
+the the mentioned github.com/garethr/dockerfilepp dependency. You can
+install that with `go get`, or using the [glide package
+manager](https://glide.sh/), simple type `glide up`.
 
 The project uses [go-bindata](https://github.com/jteeuwen/go-bindata) to
 make management of processors easier so first install that. This is only
 required for building your own binaries, not using the resulting tool.
+At some point I'll start releasing precompiled binaries.
 
 Running `make build` should then be enough to generate a `dockerfilepp-puppet`
 binary.

@@ -2,6 +2,9 @@ OUTPUT ?= dockerfilepp-puppet
 
 all: build
 
+deps:
+	glide up
+
 bindata:
 	go-bindata -prefix "processors/" -o processors.go  processors
 
