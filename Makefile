@@ -17,27 +17,32 @@ check:
 bindata: tools
 	go-bindata -prefix "processors/" -o processors.go  processors
 
+dirs:
+	mkdir -p release
+	mkdir -p bin/linux/amd64
+	mkdir -p bin/windows/amd64
+	mkdir -p bin/darwin/amd64
+
+build_deps: bindata deps dirs
+
 build: darwin linux windows
 
-darwin: bindata deps
+darwin: build_deps
 	go build -v -o ${OUTPUT}
-	mkdir -p releases
 	tar -cvzf releases/dockerfilepp-puppet-darwin-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
 
-linux: bindata deps
+linux: build_deps
 	env GOOS=linux GOAARCH=amd64 go build -v -o bin/linux/amd64/dockerfilepp-puppet
-	mkdir -p releases
 	tar -cvzf releases/dockerfilepp-puppet-linux-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
 
-windows: bindata deps
+windows: build_deps
 	env GOOS=windows GOAARCH=amd64 go build -v -o bin/windows/amd64/dockerfilepp-puppet
-	mkdir -p releases
 	tar -cvzf releases/dockerfilepp-puppet-windows-amd64.tar.gz bin/windows/amd64/dockerfilepp-puppet
 
-example: build
+example: darwin
 	cat example/Dockerfile | ./${OUTPUT}
 
-diff: build
+diff: darwin
 	cat example/Dockerfile | ./${OUTPUT} > Dockerfile.result
 	-colordiff -y example/Dockerfile Dockerfile.result
 	rm Dockerfile.result
