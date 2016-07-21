@@ -17,3 +17,18 @@ install:
 script:
   - make lint
   - make test
+
+after_success:
+  - make build
+
+deploy:
+  provider: releases
+  api_key:
+    secure: gaJgzYPR62G1CgcI2qFBARyw76GFk/6nQlae9FPcehIk4gnoOsQKQN7mK3qeN7L5w0Y8dYcBZ653LgjUDCUZfuugPD087XqNM9Q8Pod5km8uraR1yvACpgg2ArUIeLias/L5g/J3B4OqfKPrniGBBC9sQLtykVnAWLyoWm8gqMbKvA5+1gB/AfQfljPB/dx71gMAd7jpDvxyYiOSETrSEp6b0Kvgn0jpXqA7jTRlO7LoaX/dCzx4CQowNKnCqUON/6ngBRGx9OUWIzZMx/KQGw0N9QcDUFFkWk+HtzcwaZ6gwMCagAfOEscn5D5gMZ+cbUb9VzsbkMB+2Xe5N43cdreRJU4RnEMX/NDG0Nr8ZnguKJhfiX2iBk9J/umuew+WiCmYFjoB5JAK6S0x1n2cGee+EJmfdEU3urPOQ7hfYsOJneE2mJk6ZijDCYNNzHgR1N7ANgINBwVKMIRfE2B3+5Uy0YONchb3ziRtRgkAezo0rKhRb1lSScshD7egPjfWun3omG/eNkaLIYfbOdWe2LWCv4Ewcncul0R2uI4IRyU3v+VQBLkaBYwvq0pAmkHnohqoi1knZipWRwXCPVdpIUjFXGO/0dshAwhqPoW26FgS2HsatH96iYwY6OrZz5iXnFxX/d0GWeFQPfvMowKRhSHMdCw2aWFVoDUg28JuiNQ=
+  file:
+    - releases/dockerfilepp-puppet-darwin-amd64.tar.gz
+    - releases/dockerfilepp-puppet-windows-amd64.tar.gz
+    - releases/dockerfilepp-puppet-linux-amd64.tar.gz
+  on:
+    repo: garethr/dockerfilepp-puppet
+    tags: true

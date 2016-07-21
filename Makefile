@@ -14,14 +14,25 @@ deps:
 check:
 	errcheck
 
-bindata:
+bindata: tools
 	go-bindata -prefix "processors/" -o processors.go  processors
 
-build: bindata
-	go build -v -o ${OUTPUT}
+build: darwin linux windows
 
-linux: bindata
+darwin: bindata deps
+	go build -v -o ${OUTPUT}
+	mkdir -p releases
+	tar -cvzf releases/dockerfilepp-puppet-darwin-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
+
+linux: bindata deps
 	env GOOS=linux GOAARCH=amd64 go build -v -o bin/linux/amd64/dockerfilepp-puppet
+	mkdir -p releases
+	tar -cvzf releases/dockerfilepp-puppet-linux-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
+
+windows: bindata deps
+	env GOOS=windows GOAARCH=amd64 go build -v -o bin/windows/amd64/dockerfilepp-puppet
+	mkdir -p releases
+	tar -cvzf releases/dockerfilepp-puppet-windows-amd64.tar.gz bin/windows/amd64/dockerfilepp-puppet
 
 example: build
 	cat example/Dockerfile | ./${OUTPUT}
