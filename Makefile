@@ -28,7 +28,12 @@ build_deps: bindata deps dirs
 build: darwin linux windows
 
 darwin: build_deps
+	pwd
 	go build -v -o ${OUTPUT}
+	ls -alh
+	ls bin
+	ls bin/linux
+	ls bin/linux/amd64
 	tar -cvzf releases/dockerfilepp-puppet-darwin-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
 
 linux: build_deps
