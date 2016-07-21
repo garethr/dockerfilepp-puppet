@@ -1,6 +1,12 @@
 A _very much_ proof-of-concept showing how simple it is to build
 Dockerfile pre-processors.
 
+[![Build
+Status](https://travis-ci.org/garethr/dockerfilepp-puppet.svg)](https://travis-ci.org/garethr/dockerfilepp-puppet)
+[![Go Report
+Card](https://goreportcard.com/badge/github.com/garethr/dockerfilepp-puppet)](https://goreportcard.com/report/github.com/garethr/dockerfilepp-puppet)
+[![GoDoc](https://godoc.org/github.com/garethr/dockerfilepp-puppet?status.svg)](https://godoc.org/github.com/garethr/dockerfilepp-puppet)
+
 In this case `dockerfilepp-puppet` is a trivial go application which takes a
 Dockerfile on stdin and simply replaces some pre-defined values. The
 idea would be to make Dockerfile declarative again, making multiple
