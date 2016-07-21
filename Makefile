@@ -1,4 +1,3 @@
-OUTPUT ?= dockerfilepp-puppet
 GOFMT_FILES?=$$(find . -name '*.go' | grep -v vendor)
 
 all: build
@@ -6,15 +5,22 @@ all: build
 tools:
 	go get -u github.com/golang/lint/golint
 	go get -u github.com/jteeuwen/go-bindata/...
+	go get -u github.com/kisielk/errcheck
 
 deps:
 	glide up
+
+check:
+	errcheck
 
 bindata:
 	go-bindata -prefix "processors/" -o processors.go  processors
 
 build: bindata
-	go build -o ${OUTPUT}
+	go build -v
+
+linux: bindata
+	env GOOS=linux go build -v
 
 example: build
 	cat example/Dockerfile | ./${OUTPUT}
