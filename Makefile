@@ -28,20 +28,15 @@ build_deps: bindata deps dirs
 build: darwin linux windows
 
 darwin: build_deps
-	pwd
-	go build -v -o ${OUTPUT}
-	ls -alh
-	ls bin
-	ls bin/linux
-	ls bin/linux/amd64
-	tar -cvzf releases/dockerfilepp-puppet-darwin-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
+	go build -v -o $(CURDIR)/${OUTPUT}
+	tar -cvzf releases/dockerfilepp-puppet-darwin-amd64.tar.gz bin/darwin/amd64/dockerfilepp-puppet
 
 linux: build_deps
-	env GOOS=linux GOAARCH=amd64 go build -v -o bin/linux/amd64/dockerfilepp-puppet
+	env GOOS=linux GOAARCH=amd64 go build -v -o $(CURDIR)/bin/linux/amd64/dockerfilepp-puppet
 	tar -cvzf releases/dockerfilepp-puppet-linux-amd64.tar.gz bin/linux/amd64/dockerfilepp-puppet
 
 windows: build_deps
-	env GOOS=windows GOAARCH=amd64 go build -v -o bin/windows/amd64/dockerfilepp-puppet
+	env GOOS=windows GOAARCH=amd64 go build -v -o $(CURDIR)/bin/windows/amd64/dockerfilepp-puppet
 	tar -cvzf releases/dockerfilepp-puppet-windows-amd64.tar.gz bin/windows/amd64/dockerfilepp-puppet
 
 example: darwin
@@ -62,6 +57,9 @@ cover:
 	go test -coverprofile=coverage.out
 	go tool cover -html=coverage.out
 	rm coverage.out
+
+clean:
+	rm -fr releases bin
 
 fmt:
 	gofmt -w $(GOFMT_FILES)
