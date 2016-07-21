@@ -18,7 +18,7 @@ bindata: tools
 	go-bindata -prefix "processors/" -o processors.go  processors
 
 dirs:
-	mkdir -p release
+	mkdir -p releases
 	mkdir -p bin/linux/amd64
 	mkdir -p bin/windows/amd64
 	mkdir -p bin/darwin/amd64
