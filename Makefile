@@ -1,4 +1,5 @@
 GOFMT_FILES?=$$(find . -name '*.go' | grep -v vendor)
+OUTPUT ?= bin/darwin/amd64/dockerfilepp-puppet
 
 all: build
 
@@ -17,10 +18,10 @@ bindata:
 	go-bindata -prefix "processors/" -o processors.go  processors
 
 build: bindata
-	go build -v
+	go build -v -o ${OUTPUT}
 
 linux: bindata
-	env GOOS=linux go build -v
+	env GOOS=linux GOAARCH=amd64 go build -v -o bin/linux/amd64/dockerfilepp-puppet
 
 example: build
 	cat example/Dockerfile | ./${OUTPUT}
