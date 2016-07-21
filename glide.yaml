@@ -1,4 +1,4 @@
-package: .
+package: github.com/garethr/dockerfilepp-puppet
 import:
 - package: github.com/garethr/dockerfilepp
   subpackages:
