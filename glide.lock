@@ -1,12 +1,8 @@
-hash: 1f05103bb8ddb2769189ea03e6a56d276c906b13f9747575988205b1b0163d1e
-updated: 2016-07-17T17:27:35.633464071+01:00
+hash: fb6f1e863f18caa1d7cd5b5accdcc79a160d16eecf8b88772653a7b4095d559a
+updated: 2016-07-21T13:15:43.398237517+01:00
 imports:
 - name: github.com/garethr/dockerfilepp
   version: dc6d34c503de7b172ddf60fa194ef78d79be8b4c
-  subpackages:
-  - '...'
-- name: github.com/jteeuwen/go-bindata
-  version: a0ff2567cfb70903282db057e799fd826784d41d
   subpackages:
   - '...'
 devImports: []
