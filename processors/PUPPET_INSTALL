@@ -1,5 +1,5 @@
 RUN apt-get update && \
-    apt-get install -y wget=1.17.1-1ubuntu1 && \
+    apt-get install -y wget && \
     wget https://apt.puppetlabs.com/puppetlabs-release-pc1-"$$UBUNTU_CODENAME".deb && \
     dpkg -i puppetlabs-release-pc1-"$$UBUNTU_CODENAME".deb && \
     rm puppetlabs-release-pc1-"$$UBUNTU_CODENAME".deb && \
